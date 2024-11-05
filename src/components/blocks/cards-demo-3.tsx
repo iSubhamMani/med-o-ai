@@ -66,6 +66,7 @@ const Skeleton = () => {
   ];
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     animate(sequence, {
       repeat: Infinity,
       repeatDelay: 1,
