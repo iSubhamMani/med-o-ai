@@ -39,9 +39,7 @@ export async function POST(req: NextRequest) {
 
     transaction.startTransaction();
 
-    const genAI = new GoogleGenerativeAI(
-      process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY!
-    );
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const buffer = Buffer.from(await imgFile.arrayBuffer());
