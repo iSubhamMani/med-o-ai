@@ -1,6 +1,6 @@
 "use client";
 import { animate, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { GoCopilot } from "react-icons/go";
 
@@ -66,7 +66,7 @@ const Skeleton = () => {
   ];
 
   useEffect(() => {
-    // @ts-ignore
+    // @ts-expect-error
     animate(sequence, {
       repeat: Infinity,
       repeatDelay: 1,
