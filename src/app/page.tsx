@@ -1,101 +1,81 @@
+"use client";
+
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { FlipWords } from "@/components/ui/flip-words";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const words = ["Health Coach", "Prescription Assistant"];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen w-full rounded-md bg-neutral-950 relative flex flex-col items-center antialiased">
+      <main className="max-w-3xl mx-auto p-4 mt-20">
+        <TextGenerateEffect
+          duration={0.3}
+          className="text-white text-3xl md:text-4xl lg:text-6xl text-center"
+          words="Med-o-AI"
+        />
+        <div className="mt-4 md:mt-2 text-lg md:text-2xl lg:text-4xl mx-auto font-normal text-neutral-400 text-center">
+          Your AI <br />
+          <FlipWords className="text-inherit text-white" words={words} />
+        </div>
+        <div className="my-8 flex justify-center">
+          <button
+            onClick={() => signIn("google", { callbackUrl: "/u/home" })}
+            className="hover:-translate-y-1 transition duration-150 ease-in-out z-50 relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+            <span className="gap-2 inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+              <Image alt="Google" src={"/google.png"} width={20} height={20} />
+              Continue With Google
+            </span>
+          </button>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      <section className="my-4 md:my-8 w-full">
+        <h2 className="text-xl md:text-2xl text-white text-center font-bold">
+          What is{" "}
+          <span className="bg-opacity-70 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-md p-1">
+            Med-o-AI?
+          </span>
+        </h2>
+        <div className="max-w-3xl mx-auto text-center my-4 px-4">
+          <p className="text-balance text-neutral-300 text-sm sm:text-base ">
+            With Med-o-AI, experience a seamless blend of proactive health
+            coaching and precise prescription insights—all in one place for a
+            healthier, more informed you.Unlock the power of personalized
+            wellness with Med-o-Coach, offering tailored health recommendations
+            based on your unique data, and Med-o-Lens, that effortlessly reads
+            handwritten medical prescriptions.
+          </p>
+        </div>
+        <div className="max-w-5xl mx-auto px-8">
+          <HoverEffect
+            className="grid grid-cols-1 md:grid-cols-2"
+            items={[
+              {
+                description:
+                  "Easily read handwritten prescriptions with AI-powered accuracy, providing clear and reliable insights into your prescribed medications for safer, informed care",
+                title: "Med-o-Lens",
+                link: "/lens",
+              },
+              {
+                description:
+                  " Get personalized health and wellness recommendations tailored to your unique data, empowering you to achieve better health goals with insights that fit your lifestyle",
+                title: "Med-o-Coach",
+                link: "/coach",
+              },
+            ]}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        </div>
+      </section>
+      <footer className="px-4 py-6">
+        <p className="text-white text-sm">Copyright © 2024 Med-o-AI</p>
       </footer>
+      <BackgroundBeams />
     </div>
   );
 }
