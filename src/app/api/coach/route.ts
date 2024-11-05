@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   await connectDB();
 
   try {
-    const { user } = await getServerSession(authOptions);
+    const user = (await getServerSession(authOptions))?.user;
 
     if (!user) {
       throw new Error("Unauthorized user");
@@ -172,7 +172,7 @@ export async function GET(req: NextRequest) {
   await connectDB();
 
   try {
-    const { user } = await getServerSession(authOptions);
+    const user = (await getServerSession(authOptions))?.user;
 
     if (!user) {
       throw new Error("Unauthorized user");
